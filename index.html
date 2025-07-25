@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>インタラクティブ年表（2017〜2025）</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: row;
+      margin: 0;
+      padding: 0;
+    }
+    .timeline {
+      width: 30%;
+      padding: 2rem;
+      background: #f5f5f5;
+      height: 100vh;
+      overflow-y: auto;
+      box-sizing: border-box;
+    }
+    .timeline ul {
+      list-style: none;
+      padding: 0;
+    }
+    .timeline li {
+      margin-bottom: 1rem;
+      cursor: pointer;
+      padding: 0.5rem;
+      border-radius: 6px;
+    }
+    .timeline li:hover {
+      background: #ddd;
+    }
+    .map-display {
+      width: 70%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #fff;
+      padding: 2rem;
+      box-sizing: border-box;
+    }
+    .map {
+      max-width: 100%;
+      max-height: 90vh;
+      display: none;
+    }
+    .map.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="timeline">
+    <ul>
+      <li onclick="showMap('map2017')">2017年</li>
+      <li onclick="showMap('map2018')">2018年</li>
+      <li onclick="showMap('map2019')">2019年</li>
+      <li onclick="showMap('map2020')">2020年</li>
+      <li onclick="showMap('map2021')">2021年</li>
+      <li onclick="showMap('map2022')">2022年</li>
+      <li onclick="showMap('map2023')">2023年</li>
+      <li onclick="showMap('map2024')">2024年</li>
+      <li onclick="showMap('map2025')">2025年</li>
+    </ul>
+  </div>
+
+  <div class="map-display">
+    <img id="map2017" class="map" src="images/map_2017.png" alt="2017年の地図">
+    <img id="map2018" class="map" src="images/map_2018.png" alt="2018年の地図">
+    <img id="map2019" class="map" src="images/map_2019.png" alt="2019年の地図">
+    <img id="map2020" class="map" src="images/map_2020.png" alt="2020年の地図">
+    <img id="map2021" class="map" src="images/map_2021.png" alt="2021年の地図">
+    <img id="map2022" class="map" src="images/map_2022.png" alt="2022年の地図">
+    <img id="map2023" class="map" src="images/map_2023.png" alt="2023年の地図">
+    <img id="map2024" class="map" src="images/map_2024.png" alt="2024年の地図">
+    <img id="map2025" class="map" src="images/map_2025.png" alt="2025年の地図">
+  </div>
+
+  <script>
+    function showMap(id) {
+      document.querySelectorAll('.map').forEach(img => img.classList.remove('active'));
+      const target = document.getElementById(id);
+      if (target) target.classList.add('active');
+    }
+
+    // 初期表示
+    showMap('map2017');
+  </script>
+</body>
+</html>
