@@ -84,6 +84,7 @@
   </div>
 
   <div class="map-display">
+    <img id="map0000" class="map" src="images/map_0000.png" alt="初期表示の地図">
     <img id="map2001" class="map" src="images/map_2001.png" alt="2001年の地図">
     <img id="map2017" class="map" src="images/map_2017.png" alt="2017・2020・2021年の地図">
     <img id="map2022" class="map" src="images/map_2022.png" alt="2022・2023年の地図">
@@ -103,20 +104,22 @@
       '2025': 'map2025'
     };
 
-    // コメントの切り替え
     const targetComment = document.getElementById('comment-' + year);
     const isAlreadyOpen = targetComment.style.display === 'block';
 
-    // すべて閉じる
+    // すべて非表示
     document.querySelectorAll('.comment').forEach(c => c.style.display = 'none');
     document.querySelectorAll('.map').forEach(img => img.classList.remove('active'));
 
-    // すでに開いていたなら何もしない（つまり閉じるだけ）
     if (!isAlreadyOpen) {
       targetComment.style.display = 'block';
       const targetMapId = yearToMap[year];
       const targetMap = document.getElementById(targetMapId);
       if (targetMap) targetMap.classList.add('active');
+    } else {
+      // すべて閉じた状態なら map_0000 を表示
+      const fallbackMap = document.getElementById('map0000');
+      if (fallbackMap) fallbackMap.classList.add('active');
     }
   }
 </script>
