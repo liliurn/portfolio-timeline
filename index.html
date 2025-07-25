@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>インタラクティブ年表（2017〜2025）</title>
+  <title>インタラクティブ年表</title>
   <style>
     body {
       font-family: sans-serif;
@@ -20,18 +20,22 @@
       overflow-y: auto;
       box-sizing: border-box;
     }
-    .timeline ul {
-      list-style: none;
-      padding: 0;
-    }
-    .timeline li {
+    .timeline .year {
       margin-bottom: 1rem;
       cursor: pointer;
       padding: 0.5rem;
       border-radius: 6px;
+      background: #e0e0e0;
     }
-    .timeline li:hover {
-      background: #ddd;
+    .timeline .year:hover {
+      background: #ccc;
+    }
+    .comment {
+      display: none;
+      margin-top: 0.5rem;
+      padding: 0.5rem;
+      background-color: #fff;
+      border-left: 3px solid #888;
     }
     .map-display {
       width: 70%;
@@ -54,40 +58,58 @@
 </head>
 <body>
   <div class="timeline">
-    <ul>
-      <li onclick="showMap('map2017')">2017年</li>
-      <li onclick="showMap('map2018')">2018年</li>
-      <li onclick="showMap('map2019')">2019年</li>
-      <li onclick="showMap('map2020')">2020年</li>
-      <li onclick="showMap('map2021')">2021年</li>
-      <li onclick="showMap('map2022')">2022年</li>
-      <li onclick="showMap('map2023')">2023年</li>
-      <li onclick="showMap('map2024')">2024年</li>
-      <li onclick="showMap('map2025')">2025年</li>
-    </ul>
+    <div class="year" onclick="showMapAndComment('2001')">2001年</div>
+    <div id="comment-2001" class="comment">2001年の出来事についてのコメント</div>
+
+    <div class="year" onclick="showMapAndComment('2017')">2017年</div>
+    <div id="comment-2017" class="comment">2017年の出来事についてのコメント</div>
+
+    <div class="year" onclick="showMapAndComment('2020')">2020年</div>
+    <div id="comment-2020" class="comment">2020年の出来事についてのコメント</div>
+
+    <div class="year" onclick="showMapAndComment('2021')">2021年</div>
+    <div id="comment-2021" class="comment">2021年の出来事についてのコメント</div>
+
+    <div class="year" onclick="showMapAndComment('2022')">2022年</div>
+    <div id="comment-2022" class="comment">2022年の出来事についてのコメント</div>
+
+    <div class="year" onclick="showMapAndComment('2023')">2023年</div>
+    <div id="comment-2023" class="comment">2023年の出来事についてのコメント</div>
+
+    <div class="year" onclick="showMapAndComment('2024')">2024年</div>
+    <div id="comment-2024" class="comment">2024年の出来事についてのコメント</div>
+
+    <div class="year" onclick="showMapAndComment('2025')">2025年</div>
+    <div id="comment-2025" class="comment">2025年の出来事についてのコメント</div>
   </div>
 
   <div class="map-display">
+    <img id="map2001" class="map" src="images/map_2001.png" alt="2001年の地図">
     <img id="map2017" class="map" src="images/map_2017.png" alt="2017年の地図">
-    <img id="map2018" class="map" src="images/map_2018.png" alt="2018年の地図">
-    <img id="map2019" class="map" src="images/map_2019.png" alt="2019年の地図">
-    <img id="map2020" class="map" src="images/map_2020.png" alt="2020年の地図">
-    <img id="map2021" class="map" src="images/map_2021.png" alt="2021年の地図">
+    <img id="map2020" class="map" src="images/map_2017.png" alt="2020年の地図">
+    <img id="map2021" class="map" src="images/map_2017.png" alt="2021年の地図">
     <img id="map2022" class="map" src="images/map_2022.png" alt="2022年の地図">
-    <img id="map2023" class="map" src="images/map_2023.png" alt="2023年の地図">
-    <img id="map2024" class="map" src="images/map_2024.png" alt="2024年の地図">
+    <img id="map2023" class="map" src="images/map_2022.png" alt="2023年の地図">
+    <img id="map2024" class="map" src="images/map_2025.png" alt="2024年の地図">
     <img id="map2025" class="map" src="images/map_2025.png" alt="2025年の地図">
   </div>
 
   <script>
-    function showMap(id) {
+    function showMapAndComment(year) {
+      // 地図の切り替え
       document.querySelectorAll('.map').forEach(img => img.classList.remove('active'));
-      const target = document.getElementById(id);
-      if (target) target.classList.add('active');
+      const targetMap = document.getElementById('map' + year);
+      if (targetMap) targetMap.classList.add('active');
+
+      // コメントの切り替え
+      document.querySelectorAll('.comment').forEach(c => c.style.display = 'none');
+      const targetComment = document.getElementById('comment-' + year);
+      if (targetComment) targetComment.style.display = 'block';
     }
 
     // 初期表示
-    showMap('map2017');
+    showMapAndComment('2001');
   </script>
 </body>
 </html>
+
