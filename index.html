@@ -91,30 +91,35 @@
   </div>
 
   <script>
-    function showMapAndComment(year) {
-      // 地図表示のルールを定義
-      const yearToMap = {
-        '2001': 'map2001',
-        '2017': 'map2017',
-        '2020': 'map2017',
-        '2021': 'map2017',
-        '2022': 'map2022',
-        '2023': 'map2022',
-        '2024': 'map2025',
-        '2025': 'map2025'
-      };
+  function showMapAndComment(year) {
+    const yearToMap = {
+      '2001': 'map2001',
+      '2017': 'map2017',
+      '2020': 'map2017',
+      '2021': 'map2017',
+      '2022': 'map2022',
+      '2023': 'map2022',
+      '2024': 'map2025',
+      '2025': 'map2025'
+    };
 
-      // 地図の切り替え
-      document.querySelectorAll('.map').forEach(img => img.classList.remove('active'));
+    // コメントの切り替え
+    const targetComment = document.getElementById('comment-' + year);
+    const isAlreadyOpen = targetComment.style.display === 'block';
+
+    // すべて閉じる
+    document.querySelectorAll('.comment').forEach(c => c.style.display = 'none');
+    document.querySelectorAll('.map').forEach(img => img.classList.remove('active'));
+
+    // すでに開いていたなら何もしない（つまり閉じるだけ）
+    if (!isAlreadyOpen) {
+      targetComment.style.display = 'block';
       const targetMapId = yearToMap[year];
       const targetMap = document.getElementById(targetMapId);
       if (targetMap) targetMap.classList.add('active');
-
-      // コメントの切り替え
-      document.querySelectorAll('.comment').forEach(c => c.style.display = 'none');
-      const targetComment = document.getElementById('comment-' + year);
-      if (targetComment) targetComment.style.display = 'block';
     }
-  </script>
+  }
+</script>
+
 </body>
 </html>
