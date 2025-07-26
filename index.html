@@ -194,32 +194,34 @@
         '2024': 'map2022',
         '2025': 'map2025'
       };
-
+    
+      // 全コメントと矢印をリセット
+      document.querySelectorAll('.comment').forEach(c => c.style.display = 'none');
+      document.querySelectorAll('.arrow').forEach(a => a.textContent = '▾');
+      document.querySelectorAll('.map').forEach(img => img.classList.remove('active'));
+    
+      const targetComment = document.getElementById('comment-' + year);
       const targetArrow = document.getElementById('arrow-' + year);
       const targetMapId = yearToMap[year];
       const targetMap = document.getElementById(targetMapId);
-      
+    
+      // 初期状態では map0000 を表示
+      let fallbackMapShown = true;
+    
       if (targetComment) {
         const isAlreadyOpen = targetComment.style.display === 'block';
-      
         if (!isAlreadyOpen) {
           targetComment.style.display = 'block';
-          if (targetArrow) targetArrow.textContent = '˄';
-        } else {
-          targetComment.style.display = 'none';
-          if (targetArrow) targetArrow.textContent = '˅';
+          if (targetArrow) targetArrow.textContent = '▴';
+          fallbackMapShown = false;
         }
-      } else {
-        // コメントがない年 → 矢印なしでもマップだけ切り替え
-        if (targetArrow) targetArrow.textContent = '˅';
       }
-      
-      // コメントの有無にかかわらずマップ切り替え（常に発火）
-      if (targetMap) {
+    
+      if (!fallbackMapShown && targetMap) {
         targetMap.classList.add('active');
       } else {
-        const fallbackMap = document.getElementById('map0000');
-        if (fallbackMap) fallbackMap.classList.add('active');
+        const fallback = document.getElementById('map0000');
+        if (fallback) fallback.classList.add('active');
       }
     }
   </script>
