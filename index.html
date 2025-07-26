@@ -107,7 +107,7 @@
 </head>
 
 <div style="position: fixed; bottom: 4px; right: 8px; font-size: 10px; color: #aaa; pointer-events: none;">
-  v0.4.5
+  v0.4.6
 </div>
 
 <body>
@@ -151,15 +151,23 @@
     <div class="year" onclick="showMapAndComment('2023')">
       <span class="year-label">2023</span>
       <span class="age-label">22</span>
-      <span class="title-label">研究室配属</span>
+      <span class="title-label">研究室配属，休学</span>
       <span class="arrow" id="arrow-2023">＋</span>
     </div>
     <div id="comment-2023" class="comment">2023年の出来事についてのコメント</div>
 
+    <div class="year" onclick="showMapAndComment('2024')">
+      <span class="year-label">2024</span>
+      <span class="age-label">23</span>
+      <span class="title-label">復学</span>
+      <span class="arrow" id="arrow-2024">＋</span>
+    </div>
+    <div id="comment-2024" class="comment">2024年の出来事についてのコメント</div>
+
     <div class="year" onclick="showMapAndComment('2025')">
       <span class="year-label">2025</span>
       <span class="age-label">24</span>
-      <span class="title-label">休学，豊橋技科大 卒業<br>現在</span>
+      <span class="title-label">豊橋技科大 卒業<br>現在</span>
       <span class="arrow" id="arrow-2025">＋</span>
     </div>
     <div id="comment-2025" class="comment">2025年の出来事についてのコメント</div>
@@ -168,7 +176,7 @@
   <div class="map-display">
     <img id="map0000" class="map active" src="images/map_0000.png" alt="初期表示の地図" />
     <img id="map2001" class="map" src="images/map_2001.png" alt="2001年の地図" />
-    <img id="map2017" class="map" src="images/map_2017.png" alt="2017・2020・2021年の地図" />
+    <img id="map2017" class="map" src="images/map_2017.png" alt="2017・2020年の地図" />
     <img id="map2022" class="map" src="images/map_2022.png" alt="2022・2023・2024年の地図" />
     <img id="map2025" class="map" src="images/map_2025.png" alt="2025年の地図" />
   </div>
@@ -182,7 +190,6 @@
         '2001': 'map2001',
         '2017': 'map2017',
         '2020': 'map2017',
-        '2021': 'map2017',
         '2022': 'map2022',
         '2023': 'map2022',
         '2024': 'map2022',
