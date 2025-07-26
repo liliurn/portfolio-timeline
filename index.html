@@ -191,45 +191,42 @@
         '2021': 'map2017',
         '2022': 'map2022',
         '2023': 'map2022',
-        '2024': 'map2022', // ← 修正済み
+        '2024': 'map2022',
         '2025': 'map2025'
       };
     
-      // 全リセット
+      // 全コメントを閉じ、すべての矢印を＋にリセット
       document.querySelectorAll('.comment').forEach(c => c.style.display = 'none');
-      document.querySelectorAll('.arrow').forEach(a => a.textContent = '＋');
+      document.querySelectorAll('.arrow').forEach(a => a.textContent = '+');
       document.querySelectorAll('.map').forEach(img => img.classList.remove('active'));
     
       const targetComment = document.getElementById('comment-' + year);
       const targetArrow = document.getElementById('arrow-' + year);
       const targetMapId = yearToMap[year];
       const targetMap = document.getElementById(targetMapId);
+      const fallback = document.getElementById('map0000');
     
-      let fallbackMapShown = true;
+      const isAlreadyOpen = targetComment && targetComment.style.display === 'block';
     
-      if (targetComment) {
-        const isAlreadyOpen = targetComment.style.display === 'block';
-      
-        if (isAlreadyOpen) {
-          // 閉じる処理（コメント非表示、矢印戻す、初期マップ表示）
-          targetComment.style.display = 'none';
-          if (targetArrow) targetArrow.textContent = '＋';
-      
-          const fallback = document.getElementById('map0000');
-          if (fallback) fallback.classList.add('active');
-          return; // これで以降のマップ切り替え処理をスキップ
-        } else {
-          // 開く処理（コメント表示、矢印上向き）
-          targetComment.style.display = 'block';
-          if (targetArrow) targetArrow.textContent = '×';
-        }
+      if (isAlreadyOpen) {
+        // コメントを閉じ、初期地図に戻す
+        if (targetComment) targetComment.style.display = 'none';
+        if (targetArrow) targetArrow.textContent = '+';
+        if (fallback) fallback.classList.add('active');
+        return;
       }
     
-      if (!fallbackMapShown && targetMap) {
+      // コメントがある年だけ表示
+      if (targetComment) {
+        targetComment.style.display = 'block';
+        if (targetArrow) targetArrow.textContent = '×';
+      }
+    
+      // マップを表示
+      if (targetMap) {
         targetMap.classList.add('active');
-      } else {
-        const fallback = document.getElementById('map0000');
-        if (fallback) fallback.classList.add('active');
+      } else if (fallback) {
+        fallback.classList.add('active');
       }
     }
   </script>
