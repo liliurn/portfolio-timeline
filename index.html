@@ -191,13 +191,13 @@
         '2021': 'map2017',
         '2022': 'map2022',
         '2023': 'map2022',
-        '2024': 'map2022',
+        '2024': 'map2022', // ← 修正済み
         '2025': 'map2025'
       };
     
-      // 全コメントと矢印をリセット
+      // 全リセット
       document.querySelectorAll('.comment').forEach(c => c.style.display = 'none');
-      document.querySelectorAll('.arrow').forEach(a => a.textContent = '▾');
+      document.querySelectorAll('.arrow').forEach(a => a.textContent = '⌄');
       document.querySelectorAll('.map').forEach(img => img.classList.remove('active'));
     
       const targetComment = document.getElementById('comment-' + year);
@@ -205,16 +205,18 @@
       const targetMapId = yearToMap[year];
       const targetMap = document.getElementById(targetMapId);
     
-      // 初期状態では map0000 を表示
       let fallbackMapShown = true;
     
       if (targetComment) {
         const isAlreadyOpen = targetComment.style.display === 'block';
         if (!isAlreadyOpen) {
           targetComment.style.display = 'block';
-          if (targetArrow) targetArrow.textContent = '▴';
+          if (targetArrow) targetArrow.textContent = '⌃';
           fallbackMapShown = false;
         }
+      } else {
+        // コメントが存在しない年も、地図は表示対象
+        fallbackMapShown = false;
       }
     
       if (!fallbackMapShown && targetMap) {
