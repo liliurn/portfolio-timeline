@@ -187,8 +187,12 @@
     <img id="map2025" class="map" src="images/map_2025.png" alt="2025年の地図" />
   </div>
 
+  let currentOpenYear = null;
+
   <script>
     function showMapAndComment(year) {
+      const isSameYear = (year === currentOpenYear);
+
       const yearToMap = {
         '2001': 'map2001',
         '2017': 'map2017',
@@ -213,16 +217,20 @@
       document.querySelectorAll('.arrow').forEach(a => a.textContent = '＋');
       document.querySelectorAll('.map').forEach(m => m.classList.remove('active'));
 
-      // コメントも矢印もない（＝非トグル年）の場合、マップだけ表示
       if (!clickedComment && !clickedArrow) {
-        if (clickedMap) {
-          clickedMap.classList.add('active');
-        } else if (fallbackMap) {
-          fallbackMap.classList.add('active');
+        if (isSameYear) {
+          currentOpenYear = null;
+          if (fallbackMap) fallbackMap.classList.add('active');
+        } else {
+          currentOpenYear = year;
+          if (clickedMap) {
+            clickedMap.classList.add('active');
+          } else if (fallbackMap) {
+            fallbackMap.classList.add('active');
+          }
         }
         return;
       }
-
 
       if (isOpen || (!clickedComment && clickedArrow.textContent === '×')) {
         // コメントあり → 通常の閉じ処理
@@ -245,6 +253,7 @@
       // マップを表示
       if (clickedMap) {
         clickedMap.classList.add('active');
+        currentOpenYear = year;
       } else if (fallbackMap) {
         fallbackMap.classList.add('active');
       }
