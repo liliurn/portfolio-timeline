@@ -209,17 +209,20 @@
     
       if (targetComment) {
         const isAlreadyOpen = targetComment.style.display === 'block';
-        if (!isAlreadyOpen) {
-          targetComment.style.display = 'block';
-          if (targetArrow) targetArrow.textContent = '×';
-        } else {
+      
+        if (isAlreadyOpen) {
+          // 閉じる処理（コメント非表示、矢印戻す、初期マップ表示）
           targetComment.style.display = 'none';
           if (targetArrow) targetArrow.textContent = '＋';
+      
+          const fallback = document.getElementById('map0000');
+          if (fallback) fallback.classList.add('active');
+          return; // これで以降のマップ切り替え処理をスキップ
+        } else {
+          // 開く処理（コメント表示、矢印上向き）
+          targetComment.style.display = 'block';
+          if (targetArrow) targetArrow.textContent = '×';
         }
-        fallbackMapShown = false;  // ← この行は if の外に出す
-      } else {
-        // コメントが存在しない年も、地図は表示対象
-        fallbackMapShown = false;
       }
     
       if (!fallbackMapShown && targetMap) {
