@@ -105,6 +105,11 @@
     }
   </style>
 </head>
+
+<div style="position: fixed; bottom: 4px; right: 8px; font-size: 10px; color: #aaa; pointer-events: none;">
+  v0.4.1
+</div>
+
 <body>
   <div class="timeline">
     <div class="year-header">
@@ -201,14 +206,14 @@
       const fallbackMap = document.getElementById('map0000');
       const clickedMap = document.getElementById(clickedMapId);
     
-      const isOpen = (clickedComment && clickedComment.style.display === 'block') || false;
-    
+      const isOpen = clickedComment ? clickedComment.style.display === 'block' : false;
+
       // すべて閉じる（コメント、矢印、マップ）
       document.querySelectorAll('.comment').forEach(c => c.style.display = 'none');
       document.querySelectorAll('.arrow').forEach(a => a.textContent = '＋');
       document.querySelectorAll('.map').forEach(m => m.classList.remove('active'));
 
-      // コメントも矢印もない場合は、単純にマップだけ切り替えて return
+      // コメントも矢印もない（＝非トグル年）の場合、マップだけ表示
       if (!clickedComment && !clickedArrow) {
         if (clickedMap) {
           clickedMap.classList.add('active');
@@ -217,6 +222,7 @@
         }
         return;
       }
+
 
       if (isOpen || (!clickedComment && clickedArrow.textContent === '×')) {
         // コメントあり → 通常の閉じ処理
