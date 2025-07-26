@@ -97,6 +97,12 @@
     .map.active {
       display: block !important;
     }
+
+    .arrow {
+      margin-left: auto;
+      font-size: 0.9em;
+      color: #555;
+    }
   </style>
 </head>
 <body>
@@ -112,12 +118,12 @@
       <span class="age-label">0</span>
       <span class="title-label">山形県出身</span>
     </div>
-    <div id="comment-2001" class="comment">2001年の出来事についてのコメント</div>
 
     <div class="year" onclick="showMapAndComment('2017')">
       <span class="year-label">2017</span>
       <span class="age-label">16</span>
       <span class="title-label">仙台高専 入学</span>
+      <span class="arrow" id="arrow-2017">▼</span>
     </div>
     <div id="comment-2017" class="comment">2017年の出来事についてのコメント</div>
     
@@ -125,6 +131,7 @@
       <span class="year-label">2020</span>
       <span class="age-label">19</span>
       <span class="title-label">研究室配属</span>
+      <span class="arrow" id="arrow-2020">▼</span>
     </div>
     <div id="comment-2020" class="comment">2020年の出来事についてのコメント</div>
     
@@ -133,12 +140,12 @@
       <span class="age-label">20</span>
       <span class="title-label">仙台高専 卒業</span>
     </div>
-    <div id="comment-2021" class="comment">2021年の出来事についてのコメント</div>
     
     <div class="year" onclick="showMapAndComment('2022')">
       <span class="year-label">2022</span>
       <span class="age-label">21</span>
       <span class="title-label">豊橋技科大 編入学</span>
+      <span class="arrow" id="arrow-2022">▼</span>
     </div>
     <div id="comment-2022" class="comment">2022年の出来事についてのコメント</div>
     
@@ -146,6 +153,7 @@
       <span class="year-label">2023</span>
       <span class="age-label">22</span>
       <span class="title-label">研究室配属</span>
+      <span class="arrow" id="arrow-2023">▼</span>
     </div>
     <div id="comment-2023" class="comment">2023年の出来事についてのコメント</div>
     
@@ -153,6 +161,7 @@
       <span class="year-label">2024</span>
       <span class="age-label">23</span>
       <span class="title-label">休学，豊橋技科大 卒業</span>
+      <span class="arrow" id="arrow-2024">▼</span>
     </div>
     <div id="comment-2024" class="comment">2024年の出来事についてのコメント</div>
     
@@ -160,6 +169,7 @@
       <span class="year-label">2025</span>
       <span class="age-label">24</span>
       <span class="title-label">現在</span>
+      <span class="arrow" id="arrow-2025">▼</span>
     </div>
     <div id="comment-2025" class="comment">2025年の出来事についてのコメント</div>
   </div>
@@ -186,18 +196,22 @@
       };
 
       const targetComment = document.getElementById('comment-' + year);
+      const targetArrow = document.getElementById('arrow-' + year);
       const isAlreadyOpen = targetComment.style.display === 'block';
 
       // すべて非表示
+      document.querySelectorAll('.arrow').forEach(a => a.textContent = '▼');
       document.querySelectorAll('.comment').forEach(c => c.style.display = 'none');
       document.querySelectorAll('.map').forEach(img => img.classList.remove('active'));
 
       if (!isAlreadyOpen) {
+        if (targetArrow) targetArrow.textContent = '▲';
         targetComment.style.display = 'block';
         const targetMapId = yearToMap[year];
         const targetMap = document.getElementById(targetMapId);
         if (targetMap) targetMap.classList.add('active');
       } else {
+        if (targetArrow) targetArrow.textContent = '▼';
         const fallbackMap = document.getElementById('map0000');
         if (fallbackMap) fallbackMap.classList.add('active');
       }
