@@ -207,7 +207,17 @@
       document.querySelectorAll('.comment').forEach(c => c.style.display = 'none');
       document.querySelectorAll('.arrow').forEach(a => a.textContent = '＋');
       document.querySelectorAll('.map').forEach(m => m.classList.remove('active'));
-    
+
+      // コメントも矢印もない場合は、単純にマップだけ切り替えて return
+      if (!clickedComment && !clickedArrow) {
+        if (clickedMap) {
+          clickedMap.classList.add('active');
+        } else if (fallbackMap) {
+          fallbackMap.classList.add('active');
+        }
+        return;
+      }
+
       if (isOpen || (!clickedComment && clickedArrow.textContent === '×')) {
         // コメントあり → 通常の閉じ処理
         if (clickedComment) clickedComment.style.display = 'none';
@@ -220,7 +230,6 @@
         return;
       }
 
-    
       // 押したトグルを開く
       if (clickedComment) {
         clickedComment.style.display = 'block';
