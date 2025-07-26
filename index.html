@@ -21,13 +21,23 @@
       overflow-y: auto;
       box-sizing: border-box;
     }
+    
+    .year-header {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      padding: 0.5rem;
+      color: #555;
+      border-bottom: 1px solid #ddd;
+    }
   
     .year {
       display: flex;
       gap: 1rem;
       align-items: center;
       background: white;
-      border: 1px solid #ccc;
       padding: 0.5rem;
       border-radius: 6px;
       margin-bottom: 1rem;
@@ -37,6 +47,12 @@
   
     .year:hover {
       background: #f0f0f0;
+    }
+
+    .year-label,
+    .age-label,
+    .title-label {
+      display: inline-block;
     }
   
     .year-label {
@@ -85,6 +101,12 @@
 </head>
 <body>
   <div class="timeline">
+    <div class="year-header">
+      <span class="year-label">年度</span>
+      <span class="age-label">年齢</span>
+      <span class="title-label">経歴</span>
+    </div>
+    
     <div class="year" onclick="showMapAndComment('2001')">
       <span class="year-label">2001</span>
       <span class="age-label">0</span>
@@ -139,7 +161,7 @@
       <span class="age-label">24</span>
       <span class="title-label">現在</span>
     </div>
-    <div id="comment-2024" class="comment">2025年の出来事についてのコメント</div>
+    <div id="comment-2025" class="comment">2025年の出来事についてのコメント</div>
   </div>
 
   <div class="map-display">
