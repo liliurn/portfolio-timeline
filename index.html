@@ -107,7 +107,7 @@
 </head>
 
 <div style="position: fixed; bottom: 4px; right: 8px; font-size: 10px; color: #aaa; pointer-events: none;">
-  v0.4.2
+  v0.4.3
 </div>
 
 <body>
@@ -218,6 +218,8 @@
       document.querySelectorAll('.map').forEach(m => m.classList.remove('active'));
 
       if (!clickedComment && !clickedArrow) {
+        document.querySelectorAll('.map').forEach(m => m.classList.remove('active'));
+        
         if (isSameYear) {
           currentOpenYear = null;
           if (fallbackMap) fallbackMap.classList.add('active');
