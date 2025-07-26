@@ -201,7 +201,7 @@
       const fallbackMap = document.getElementById('map0000');
       const clickedMap = document.getElementById(clickedMapId);
     
-      const isOpen = clickedComment && clickedComment.style.display === 'block';
+      const isOpen = (clickedComment && clickedComment.style.display === 'block') || false;
     
       // すべて閉じる（コメント、矢印、マップ）
       document.querySelectorAll('.comment').forEach(c => c.style.display = 'none');
