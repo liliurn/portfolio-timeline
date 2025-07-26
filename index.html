@@ -12,24 +12,48 @@
       margin: 0;
       padding: 0;
     }
+  
     .timeline {
       width: 30%;
       padding: 2rem;
-      background: #ffffff;
+      background: white;
       height: 100vh;
       overflow-y: auto;
       box-sizing: border-box;
     }
-    .timeline .year {
-      margin-bottom: 1rem;
-      cursor: pointer;
+  
+    .year {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      background: white;
+      border: 1px solid #ccc;
       padding: 0.5rem;
       border-radius: 6px;
-      background: #ffffff;
+      margin-bottom: 1rem;
+      cursor: pointer;
+      transition: background 0.2s ease;
     }
-    .timeline .year:hover {
-      background: #ccc;
+  
+    .year:hover {
+      background: #f0f0f0;
     }
+  
+    .year-label {
+      width: 5em;
+      font-weight: bold;
+    }
+  
+    .age-label {
+      width: 4em;
+      color: #666;
+    }
+  
+    .title-label {
+      flex-grow: 1;
+      color: #333;
+    }
+  
     .comment {
       display: none;
       margin-top: 0.5rem;
@@ -37,6 +61,7 @@
       background-color: #fff;
       border-left: 3px solid #888;
     }
+  
     .map-display {
       width: 70%;
       display: flex;
@@ -46,11 +71,13 @@
       padding: 2rem;
       box-sizing: border-box;
     }
+  
     .map {
       max-width: 100%;
       max-height: 90vh;
       display: none;
     }
+  
     .map.active {
       display: block !important;
     }
@@ -58,29 +85,61 @@
 </head>
 <body>
   <div class="timeline">
-    <div class="year" onclick="showMapAndComment('2001')">2001 山形県出身</div>
+    <div class="year" onclick="showMapAndComment('2001')">
+      <span class="year-label">2001</span>
+      <span class="age-label">0</span>
+      <span class="title-label">山形県出身</span>
+    </div>
     <div id="comment-2001" class="comment">2001年の出来事についてのコメント</div>
 
-    <div class="year" onclick="showMapAndComment('2017')">2017 仙台高専 入学</div>
+    <div class="year" onclick="showMapAndComment('2017')">
+      <span class="year-label">2017</span>
+      <span class="age-label">16</span>
+      <span class="title-label">仙台高専 入学</span>
+    </div>
     <div id="comment-2017" class="comment">2017年の出来事についてのコメント</div>
-
-    <div class="year" onclick="showMapAndComment('2020')">2020 研究室配属</div>
+    
+    <div class="year" onclick="showMapAndComment('2020')">
+      <span class="year-label">2020</span>
+      <span class="age-label">19</span>
+      <span class="title-label">研究室配属</span>
+    </div>
     <div id="comment-2020" class="comment">2020年の出来事についてのコメント</div>
-
-    <div class="year" onclick="showMapAndComment('2021')">2021 仙台高専 卒業</div>
+    
+    <div class="year" onclick="showMapAndComment('2021')">
+      <span class="year-label">2021</span>
+      <span class="age-label">20</span>
+      <span class="title-label">仙台高専 卒業</span>
+    </div>
     <div id="comment-2021" class="comment">2021年の出来事についてのコメント</div>
-
-    <div class="year" onclick="showMapAndComment('2022')">2022 豊橋技科大 編入学</div>
+    
+    <div class="year" onclick="showMapAndComment('2022')">
+      <span class="year-label">2022</span>
+      <span class="age-label">21</span>
+      <span class="title-label">豊橋技科大 編入学</span>
+    </div>
     <div id="comment-2022" class="comment">2022年の出来事についてのコメント</div>
-
-    <div class="year" onclick="showMapAndComment('2023')">2023 研究室配属</div>
+    
+    <div class="year" onclick="showMapAndComment('2023')">
+      <span class="year-label">2023</span>
+      <span class="age-label">22</span>
+      <span class="title-label">研究室配属</span>
+    </div>
     <div id="comment-2023" class="comment">2023年の出来事についてのコメント</div>
-
-    <div class="year" onclick="showMapAndComment('2024')">2024 休学，豊橋技科大 卒業</div>
+    
+    <div class="year" onclick="showMapAndComment('2024')">
+      <span class="year-label">2024</span>
+      <span class="age-label">23</span>
+      <span class="title-label">休学，豊橋技科大 卒業</span>
+    </div>
     <div id="comment-2024" class="comment">2024年の出来事についてのコメント</div>
-
-    <div class="year" onclick="showMapAndComment('2025')">2025 現在</div>
-    <div id="comment-2025" class="comment">2025年の出来事についてのコメント</div>
+    
+    <div class="year" onclick="showMapAndComment('2025')">
+      <span class="year-label">2025</span>
+      <span class="age-label">24</span>
+      <span class="title-label">現在</span>
+    </div>
+    <div id="comment-2024" class="comment">2025年の出来事についてのコメント</div>
   </div>
 
   <div class="map-display">
